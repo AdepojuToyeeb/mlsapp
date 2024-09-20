@@ -12,7 +12,12 @@ class MealsScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Text("Oops! Nothing selected"),
+          Text(
+            "Oops! Nothing selected",
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+          ),
           const SizedBox(height: 16),
           Text(
             "Try Selecting a different Category",
