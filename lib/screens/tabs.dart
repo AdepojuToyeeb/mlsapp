@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/data/dummy_data.dart';
-import 'package:meals_app/models/meal.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:meals_app/providers/favorite_meals_provider.dart';
+import 'package:meals_app/providers/meals_provider.dart';
 import 'package:meals_app/screens/categories.dart';
 import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/screens/meals.dart';
@@ -13,31 +14,19 @@ const kInitialFilters = {
   Filter.lactoseFree: false,
 };
 
-class TabsScreen extends StatefulWidget {
+class TabsScreen extends ConsumerStatefulWidget {
   const TabsScreen({super.key});
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<TabsScreen> createState() {
     return _TabsScreenState();
   }
 }
 
-class _TabsScreenState extends State<TabsScreen> {
+class _TabsScreenState extends ConsumerState<TabsScreen> {
   int _selectedScreenIndex = 0;
-  final List<Meal> _favoriteMeals = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
 
-  void _toggleMealFavoriteStatus(Meal meal) {
-    final isExisting = _favoriteMeals.contains(meal);
-    if (isExisting) {
-      setState(() {
-        _favoriteMeals.remove(meal);
-      });
-    } else {
-      setState(() {
-        _favoriteMeals.add(meal);
-      });
-    }
-  }
+ 
 
   void _selectPage(index) {
     setState(() {
@@ -64,7 +53,8 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final availableMeals = dummyMeals.where((meal) {
+    final meals = ref.watch(mealsProvider);
+    final availableMeals = meals.where((meal) {
       if (_selectedFilters[Filter.glutenFree]! && !meal.isGlutenFree) {
         return false;
       }
@@ -81,15 +71,14 @@ class _TabsScreenState extends State<TabsScreen> {
     }).toList();
 
     Widget activeScreen = CategoriesScreen(
-      onToggleFavorite: _toggleMealFavoriteStatus,
       availableMeals: availableMeals,
     );
     var activePageTitle = 'Categories';
 
     if (_selectedScreenIndex == 1) {
+      final favoriteMeals = ref.watch(favoriteMealsProvider);
       activeScreen = MealsScreen(
-        meals: _favoriteMeals,
-        onToggleFavorite: _toggleMealFavoriteStatus,
+        meals: favoriteMeals,
       );
       activePageTitle = 'Your Favorites';
     }
@@ -105,8 +94,7 @@ class _TabsScreenState extends State<TabsScreen> {
         currentIndex: _selectedScreenIndex,
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.set_meal),
-              label: "Categories"),
+              icon: Icon(Icons.set_meal), label: "Categories"),
           BottomNavigationBarItem(icon: Icon(Icons.star), label: "Favorites")
         ],
       ),
