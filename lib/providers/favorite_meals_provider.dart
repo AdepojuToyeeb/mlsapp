@@ -8,10 +8,10 @@ class FavoriteMealsNotifier extends StateNotifier<List<Meal>> {
     final isExisting = state.contains(meal);
     if (isExisting) {
       state.where((m) => m.id != meal.id).toList();
-      return true;
+      return false;
     } else {
       state = [...state, meal];
-      return false;
+      return true;
     }
   }
 }
