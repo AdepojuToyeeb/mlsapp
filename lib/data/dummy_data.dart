@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:meals_app/data/categories.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/models/meal.dart';
 
@@ -406,4 +406,22 @@ const dummyMeals = [
     isVegetarian: true,
     isLactoseFree: true,
   ),
+];
+
+final groceryItems = [
+  GroceryItem(
+      id: 'a',
+      name: 'Milk',
+      quantity: 1,
+      category: foodCategories[Categories.dairy]!),
+  GroceryItem(
+      id: 'b',
+      name: 'Bananas',
+      quantity: 5,
+      category: foodCategories[Categories.fruit]!),
+  GroceryItem(
+      id: 'c',
+      name: 'Beef Steak',
+      quantity: 1,
+      category: foodCategories[Categories.meat]!),
 ];

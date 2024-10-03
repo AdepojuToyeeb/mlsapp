@@ -4,6 +4,7 @@ import 'package:meals_app/providers/favorite_meals_provider.dart';
 import 'package:meals_app/screens/categories.dart';
 import 'package:meals_app/screens/filters.dart';
 import 'package:meals_app/screens/meals.dart';
+import 'package:meals_app/screens/shopping_list.dart';
 import 'package:meals_app/widgets/main_drawer.dart';
 import 'package:meals_app/providers/filters_provider.dart';
 
@@ -38,6 +39,12 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
       await Navigator.of(context).push<Map<Filter, bool>>(
         MaterialPageRoute(
           builder: (ctx) => const FiltersScreen(),
+        ),
+      );
+    } else if (identifier == "shopping-list") {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (ctx) => const ShoppingList(),
         ),
       );
     }

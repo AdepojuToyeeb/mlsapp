@@ -10,7 +10,7 @@ class FiltersScreen extends ConsumerWidget {
     final activeFilters = ref.watch(filtersProvider);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Your Filterrs"),
+        title: const Text("Your Filters"),
       ),
       body: Column(
         children: [
