@@ -26,7 +26,13 @@ class _NewItemState extends State<NewItem> {
                   label: Text("Name"),
                 ),
                 validator: (value) {
-                  return 'Name is Required';
+                  if (value == null ||
+                      value.isEmpty ||
+                      value.trim().length < 2 ||
+                      value.trim().length > 50) {
+                    return "Value Must be within 2 and 50 characters";
+                  }
+                  return null;
                 },
               ),
               Row(
@@ -38,6 +44,15 @@ class _NewItemState extends State<NewItem> {
                         label: Text("Quantity"),
                       ),
                       initialValue: '1',
+                      validator: (value) {
+                        if (value == null ||
+                            value.isEmpty ||
+                            int.tryParse(value) == null ||
+                            int.tryParse(value)! <= 0) {
+                          return "Must be a valid positive number";
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(
@@ -59,17 +74,15 @@ class _NewItemState extends State<NewItem> {
                                 const SizedBox(
                                   width: 6,
                                 ),
-                                Text(
-                                  meal.title,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSurface,
-                                      ),
-                                )
+                                Text(meal.title,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface,
+                                        ))
                               ],
                             ),
                           )
