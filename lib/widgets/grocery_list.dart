@@ -7,16 +7,16 @@ class GroceryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: groceryItems.length,
+      itemCount: dummyMeals.length,
       itemBuilder: (ctx, index) => ListTile(
-        title: Text(groceryItems[index].name),
+        title: Text(dummyMeals[index].title),
         leading: Container(
           width: 24,
           height: 24,
-          color: groceryItems[index].category.color,
+          color: dummyMeals[index].categories[0].color,
         ),
         trailing: Text(
-          groceryItems[index].quantity.toString(),
+          dummyMeals[index].quantity.toString(),
         ),
       ),
     );

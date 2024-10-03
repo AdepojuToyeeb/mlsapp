@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/data/categories.dart';
 import 'package:meals_app/models/category.dart';
 import 'package:meals_app/models/meal.dart';
 
@@ -57,14 +56,12 @@ const availableCategories = [
   ),
 ];
 
-const dummyMeals = [
+final dummyMeals = [
   Meal(
     id: 'm1',
-    categories: [
-      'c1',
-      'c2',
-    ],
+    quantity: 3,
     title: 'Spaghetti with Tomato Sauce',
+    categories: [availableCategories[0]],
     affordability: Affordability.affordable,
     complexity: Complexity.simple,
     imageUrl:
@@ -94,9 +91,8 @@ const dummyMeals = [
   ),
   Meal(
     id: 'm2',
-    categories: [
-      'c2',
-    ],
+    quantity: 12,
+    categories: [availableCategories[0]],
     title: 'Toast Hawaii',
     affordability: Affordability.affordable,
     complexity: Complexity.simple,
@@ -122,10 +118,8 @@ const dummyMeals = [
   ),
   Meal(
     id: 'm3',
-    categories: [
-      'c2',
-      'c3',
-    ],
+    quantity: 1,
+    categories: [availableCategories[1], availableCategories[2]],
     title: 'Classic Hamburger',
     affordability: Affordability.pricey,
     complexity: Complexity.simple,
@@ -154,9 +148,8 @@ const dummyMeals = [
   ),
   Meal(
     id: 'm4',
-    categories: [
-      'c4',
-    ],
+    quantity: 7,
+    categories: [availableCategories[3]],
     title: 'Wiener Schnitzel',
     affordability: Affordability.luxurious,
     complexity: Complexity.challenging,
@@ -189,10 +182,11 @@ const dummyMeals = [
   ),
   Meal(
     id: 'm5',
+    quantity: 33,
     categories: [
-      'c2'
-          'c5',
-      'c10',
+      availableCategories[1],
+      availableCategories[4],
+      availableCategories[9]
     ],
     title: 'Salad with Smoked Salmon',
     affordability: Affordability.luxurious,
@@ -225,10 +219,8 @@ const dummyMeals = [
   ),
   Meal(
     id: 'm6',
-    categories: [
-      'c6',
-      'c10',
-    ],
+    quantity: 4,
+    categories: [availableCategories[5], availableCategories[9]],
     title: 'Delicious Orange Mousse',
     affordability: Affordability.affordable,
     complexity: Complexity.hard,
@@ -260,10 +252,9 @@ const dummyMeals = [
     isLactoseFree: false,
   ),
   Meal(
+    quantity: 11,
     id: 'm7',
-    categories: [
-      'c7',
-    ],
+    categories: [availableCategories[6]],
     title: 'Pancakes',
     affordability: Affordability.affordable,
     complexity: Complexity.simple,
@@ -291,10 +282,9 @@ const dummyMeals = [
     isLactoseFree: false,
   ),
   Meal(
+    quantity: 9,
     id: 'm8',
-    categories: [
-      'c8',
-    ],
+    categories: [availableCategories[7]],
     title: 'Creamy Indian Chicken Curry',
     affordability: Affordability.pricey,
     complexity: Complexity.challenging,
@@ -324,10 +314,9 @@ const dummyMeals = [
     isLactoseFree: true,
   ),
   Meal(
+    quantity: 7,
     id: 'm9',
-    categories: [
-      'c9',
-    ],
+    categories: [availableCategories[8], availableCategories[2]],
     title: 'Chocolate Souffle',
     affordability: Affordability.affordable,
     complexity: Complexity.hard,
@@ -373,11 +362,12 @@ const dummyMeals = [
     isLactoseFree: false,
   ),
   Meal(
+    quantity: 8,
     id: 'm10',
     categories: [
-      'c2',
-      'c5',
-      'c10',
+      availableCategories[1],
+      availableCategories[4],
+      availableCategories[9]
     ],
     title: 'Asparagus Salad with Cherry Tomatoes',
     affordability: Affordability.luxurious,
@@ -406,22 +396,4 @@ const dummyMeals = [
     isVegetarian: true,
     isLactoseFree: true,
   ),
-];
-
-final groceryItems = [
-  GroceryItem(
-      id: 'a',
-      name: 'Milk',
-      quantity: 1,
-      category: foodCategories[Categories.dairy]!),
-  GroceryItem(
-      id: 'b',
-      name: 'Bananas',
-      quantity: 5,
-      category: foodCategories[Categories.fruit]!),
-  GroceryItem(
-      id: 'c',
-      name: 'Beef Steak',
-      quantity: 1,
-      category: foodCategories[Categories.meat]!),
 ];

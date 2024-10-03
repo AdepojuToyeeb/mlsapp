@@ -42,7 +42,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
 
   void _selectCategory(BuildContext context, Category category) {
     final filteredLists = widget.availableMeals
-        .where((meal) => meal.categories.contains(category.id))
+        .where((m) => m.categories.contains(category))
         .toList();
 
     Navigator.of(context).push(

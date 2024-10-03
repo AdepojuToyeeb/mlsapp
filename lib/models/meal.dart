@@ -1,3 +1,5 @@
+import 'package:meals_app/models/category.dart';
+
 enum Complexity {
   simple,
   challenging,
@@ -25,15 +27,17 @@ class Meal {
     required this.isLactoseFree,
     required this.isVegan,
     required this.isVegetarian,
+    required this.quantity,
   });
 
   final String id;
-  final List<String> categories;
+  final List<Category> categories;
   final String title;
   final String imageUrl;
   final List<String> ingredients;
   final List<String> steps;
   final int duration;
+  final int quantity;
   final Complexity complexity;
   final Affordability affordability;
   final bool isGlutenFree;
