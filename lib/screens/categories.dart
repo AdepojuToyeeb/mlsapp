@@ -85,7 +85,7 @@ class _CategoriesScreenState extends State<CategoriesScreen>
         ).animate(
           CurvedAnimation(
             parent: _animationController,
-            curve: Curves.bounceInOut,
+            curve: Curves.easeIn,
           ),
         ),
         child: child,
