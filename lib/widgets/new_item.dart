@@ -10,9 +10,13 @@ class NewItem extends StatefulWidget {
 
 class _NewItemState extends State<NewItem> {
   final _formKey = GlobalKey<FormState>();
-
+  var _enteredName = '';
+  var _enteredQuantity = 1;
+  var _enteredCategory = availableCategories[0];
   void _saveItem() {
-    _formKey.currentState!.validate();
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+    }
   }
 
   @override
@@ -42,6 +46,9 @@ class _NewItemState extends State<NewItem> {
                   }
                   return null;
                 },
+                onSaved: (value) {
+                  _enteredName = value!;
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -53,7 +60,7 @@ class _NewItemState extends State<NewItem> {
                       ),
                       keyboardType: TextInputType.number,
                       style: const TextStyle(color: Colors.white),
-                      initialValue: '1',
+                      initialValue: _enteredQuantity.toString(),
                       validator: (value) {
                         if (value == null ||
                             value.isEmpty ||
@@ -63,6 +70,9 @@ class _NewItemState extends State<NewItem> {
                         }
                         return null;
                       },
+                      onSaved: (value) {
+                        _enteredQuantity = int.parse(value!);
+                      },
                     ),
                   ),
                   const SizedBox(
@@ -70,6 +80,7 @@ class _NewItemState extends State<NewItem> {
                   ),
                   Expanded(
                     child: DropdownButtonFormField(
+                      value: _enteredCategory,
                       items: [
                         for (final meal in availableCategories)
                           DropdownMenuItem(
@@ -97,7 +108,11 @@ class _NewItemState extends State<NewItem> {
                             ),
                           )
                       ],
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        setState(() {
+                          _enteredCategory = value!;
+                        });
+                      },
                     ),
                   )
                 ],
